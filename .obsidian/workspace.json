@@ -180,12 +180,12 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "84b161de08b49fec",
+  "active": "ac4c04957600e85d",
   "lastOpenFiles": [
-    "Development Notes/Future Ideas/Verifiable Safety Checks.md",
+    "Future Ideas/Verifiable Safety Checks.md",
     "README.md",
     "Development Notes/x86/Scheduler Refactor (Mar '25).md",
-    "Development Notes/Future Ideas",
+    "Future Ideas",
     "Development Notes/x86/References/Intel MultiProcessor Specification (1997).pdf",
     "Development Notes/x86/References/Interrupt Handling using the x86 APIC.pdf",
     "Development Notes/x86/References",
