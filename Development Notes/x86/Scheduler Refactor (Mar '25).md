@@ -43,3 +43,10 @@ IMCRP bit is here: [[Intel MultiProcessor Specification (1997).pdf#page=90&selec
 The "floating pointer structure" is defined in [[Intel MultiProcessor Specification (1997).pdf#page=89&selection=17,0,22,64|Intel MultiProcessor Specification (1997), page 89]] and finding it is described here: [[Intel MultiProcessor Specification (1997).pdf#page=38&selection=8,1,27,57|Intel MultiProcessor Specification (1997), page 38]]
 
 Meh. I hate memory probing, but I guess it's going to be necessary. Looks like we're searching for `_MP_` in that area (in sequential order): [[Intel MultiProcessor Specification (1997).pdf#page=39&selection=58,0,58,41|Intel MultiProcessor Specification (1997), page 39]]. That marks the beginning of the floating point table.
+
+I'll do this later. Added a `// TODO` for now.
+
+Beginning to think I'm just crossing APIC operation modes when I shouldn't be. Need to figure out the difference between LIDT vectors and the LAPIC vectors.
+
+A little while later (after consulting ChatGPT's Deep Research) I discovered that on some strict systems, the spurious interrupt register _must_ be set up before the timer is set up. That was my mistake - I was setting up the spurious interrupts after the timer initialization. Works in VBox, testing now on bare metal... Yep! Works.
+
