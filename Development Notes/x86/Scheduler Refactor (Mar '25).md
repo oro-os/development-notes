@@ -257,6 +257,8 @@ This is becoming a very, very frequent trend throughout this project - the time 
 
 (Update; next day) According to [this comment](https://github.com/rust-lang/rust/issues/138247#issuecomment-2708600901) it might actually be undefined behavior to put section directives in `global_asm!` which is news to me. I also don't see this documented anywhere (and I'm still waiting to hear back). However, this might actually be true - the boot stubs _do_ use `.section .rodata` earlier in the code, which might be affecting it. Might be good to go down a bit of a rabbit hole to determine how all of this is being set up and put together.
 
+(Update) Instead of `.section`, there needs to be a `.pushsection` and a `.popsection`.
+
 # \[9 March, 2025] On to syscalls
 
 Just a quick note. Context switching is now in; user mode is now being switched to. The first fault I got when running the hello world module was, interestingly, the invalid instruction fault. My first inclination was that it was a vector instruction or something, but I had doubts since the Rust toolchain for Oro explicitly disables them for now (though after this refactor they can be enabled).
