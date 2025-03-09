@@ -256,3 +256,28 @@ And sure enough, firing it up in the VM allowed me to step through it and see th
 This is becoming a very, very frequent trend throughout this project - the time spent on debugging tools is never time I regret spending. Debugging this just to find the `NX` bit would have taken me hours or even days before (and it has, believe me). The more I work on these, the more equipped I feel to take on even the hardest or most obscure kernel bugs I encounter, which is, of course, priceless.
 
 (Update; next day) According to [this comment](https://github.com/rust-lang/rust/issues/138247#issuecomment-2708600901) it might actually be undefined behavior to put section directives in `global_asm!` which is news to me. I also don't see this documented anywhere (and I'm still waiting to hear back). However, this might actually be true - the boot stubs _do_ use `.section .rodata` earlier in the code, which might be affecting it. Might be good to go down a bit of a rabbit hole to determine how all of this is being set up and put together.
+
+# \[9 March, 2025] On to syscalls
+
+Just a quick note. Context switching is now in; user mode is now being switched to. The first fault I got when running the hello world module was, interestingly, the invalid instruction fault. My first inclination was that it was a vector instruction or something, but I had doubts since the Rust toolchain for Oro explicitly disables them for now (though after this refactor they can be enabled).
+
+I had the faulting IP and needed to get the instruction for that address. I figured I could just `nm` it and look for the symbol before the address and disassemble it but I knew that'd take time. The module was also a release module, which means that no symbols would be shown anyway.
+
+The next idea was to open it up in gdb and try that, but I knew that'd be clunky, time consuming (I'm trying to get more efficient as I go along) and probably not ideal.
+
+I asked ChatGPT and it suggested `objdump` and Radare2 (`r2`) as potential solutions. I tried `objdump` but it disassembles in a weird format and the addresses are all file-relative, not load relative (or at least, I didn't spend much time to figure out if there was a way to do that). Grepping for the address seemed to be a pain, and I knew there was probably a better way anyway.
+
+Radare2 was a new suggestion though. I've heard of it and been meaning to try it, but haven't had the need to just yet. The command ChatGPT suggested seemed relatively straightforward, too, and seemed to be load-relative - important, since I only had the loaded virtual address that faulted, and no (easy) way to get the originating file address.
+
+```shell
+r2 -c "pd 1 @ 0x401000" -q mybinary
+```
+
+Turns out it worked perfectly. The faulting address was `0x200769a`, so I just plugged it in, and...
+
+```shell
+$ r2 -c "pd 1 @ 0x200769a" -q $ORO_ROOT_MODULES
+0x0200769a      0f05           syscall
+```
+
+Seems right, since the refactor removed the old syscall handling code and installer for now. Just didn't expect it to turn into a bad instruction exception. Seems to be that the latest context switching code works as expected!
