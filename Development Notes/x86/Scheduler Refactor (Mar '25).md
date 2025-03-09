@@ -254,3 +254,5 @@ Program Headers:
 And sure enough, firing it up in the VM allowed me to step through it and see that it's able to execute those instructions just fine now. Cool!
 
 This is becoming a very, very frequent trend throughout this project - the time spent on debugging tools is never time I regret spending. Debugging this just to find the `NX` bit would have taken me hours or even days before (and it has, believe me). The more I work on these, the more equipped I feel to take on even the hardest or most obscure kernel bugs I encounter, which is, of course, priceless.
+
+(Update; next day) According to [this comment](https://github.com/rust-lang/rust/issues/138247#issuecomment-2708600901) it might actually be undefined behavior to put section directives in `global_asm!` which is news to me. I also don't see this documented anywhere (and I'm still waiting to hear back). However, this might actually be true - the boot stubs _do_ use `.section .rodata` earlier in the code, which might be affecting it. Might be good to go down a bit of a rabbit hole to determine how all of this is being set up and put together.
