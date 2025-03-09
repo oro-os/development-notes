@@ -283,3 +283,14 @@ $ r2 -c "pd 1 @ 0x200769a" -q $ORO_ROOT_MODULES
 ```
 
 Seems right, since the refactor removed the old syscall handling code and installer for now. Just didn't expect it to turn into a bad instruction exception. Seems to be that the latest context switching code works as expected!
+
+(UPDATE) Actually I did know this. From the original syscall installer code:
+
+```rust
+// Enable the IA32_EFER.SCE bit, which enables syscall/sysret.
+// Otherwise, #UD will be raised when executing SYSCALL on
+// intel processors.
+let mut ia32_efer = rdmsr(0xC000_0080);
+ia32_efer |= 1; // Set the SCE bit
+wrmsr(0xC000_0080, ia32_efer);
+```
