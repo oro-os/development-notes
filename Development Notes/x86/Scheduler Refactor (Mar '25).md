@@ -301,3 +301,9 @@ I'll keep this short because my brain is tired and I just spent the last ~4 hour
 
 - Make sure your executable code segments and data segments have RW bit set unless you have a _really_ good reason not to have them set. I mistook them for "writable" but that's only if it's a data segment.
 - **The `STAR` MSR's user segments need to have the RPL bits in them** (i.e. `USER_CS | 3`). This was causing `#GP` faults with `err=20h` (where `20h` was indeed the segment selector for user data but was without the RPL bits and I could not for the life of me figure out why they weren't there).
+
+# \[10 March, 2025] Mostly Complete
+
+After the above fix (which was probably the cause of a lot issues in the VM side of things over the last ~4 months), debug and release mode work in multicore on all four environments.
+
+I'll sleep well tonight.
