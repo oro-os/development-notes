@@ -4,7 +4,7 @@ I need to save/restore vector/FP state using either `FXSAVE` or `XSAVE` if eithe
 
 The problem comes with mixed-processor systems, such as Alder lake. I actually don't know if they have different vector save/restore capabilities but I would _assume_ that there might be some x86_64 CPUs out there that have varying levels of vector component support within a single CPU.
 
-(UPDATE) Yes, [Alder lake does indeed](https://en.wikipedia.org/wiki/Alder_Lake). The Golden Cove P-cores have AVX-512. The Gracemont E-cores do not.
+(UPDATE) Yes, [Alder lake does indeed](https://en.wikipedia.org/wiki/Alder_Lake). The Golden Cove P-cores have AVX-512. The Gracemont E-cores do not. Related: [article on EHFI](https://itigic.com/enhanced-hardware-feedback-interface-ehfi-what-is-it/) <sup>[<a href="https://web.archive.org/web/20230307054738/https://itigic.com/enhanced-hardware-feedback-interface-ehfi-what-is-it/">archive</a>]</sup>.
 
 The problem comes with threading support. If a thread uses e.g. AVX-512 instructions is scheduled on core A (with AVX-512 support) but then gets migrated to core B (**without** AVX-512 support), that thread is going to have spurious `#UD` exceptions, I'd imagine. That'd cause headaches, hard-to-debug cases, etc. - nightmares for users and developers alike, as it'll cause random crashes at random times based on workload, only on certain machines, many of which wouldn't be readily available for debugging.
 
