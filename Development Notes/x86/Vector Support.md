@@ -4,6 +4,8 @@ I need to save/restore vector/FP state using either `FXSAVE` or `XSAVE` if eithe
 
 The problem comes with mixed-processor systems, such as Alder lake. I actually don't know if they have different vector save/restore capabilities but I would _assume_ that there might be some x86_64 CPUs out there that have varying levels of vector component support within a single CPU.
 
+(UPDATE) Yes, [Alder lake does indeed](https://en.wikipedia.org/wiki/Alder_Lake). The Golden Cove P-cores have AVX-512. The Gracemont E-cores do not.
+
 The problem comes with threading support. If a thread uses e.g. AVX-512 instructions is scheduled on core A (with AVX-512 support) but then gets migrated to core B (**without** AVX-512 support), that thread is going to have spurious `#UD` exceptions, I'd imagine. That'd cause headaches, hard-to-debug cases, etc. - nightmares for users and developers alike, as it'll cause random crashes at random times based on workload, only on certain machines, many of which wouldn't be readily available for debugging.
 
 Further, I've been bitten by the whole "vector extensions supported?" plague before; sometimes they are, and you want to use optimized functions if they are, without recompiling. This whole story is a mess, to be honest. I can't help _so much_ on the compiler end, but compilers _do_ have some support for this case (where support is detected at runtime and a lookup table is switched out) - for example, [GCC's `ifunc` attribute](https://webcf.waybackmachine.org/web/20250311015001/https://gcc.gnu.org/onlinedocs/gcc-5.3.0/gcc/Function-Attributes.html#index-g_t_0040code_007bifunc_007d-function-attribute-3095).
