@@ -2,5 +2,7 @@
   "autoPairBrackets": false,
   "autoPairMarkdown": false,
   "smartIndentList": false,
-  "vimMode": true
+  "vimMode": true,
+  "promptDelete": false,
+  "alwaysUpdateLinks": true
 }

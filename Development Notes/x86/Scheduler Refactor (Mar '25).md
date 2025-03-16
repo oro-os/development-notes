@@ -8,7 +8,7 @@ It's worth noting that we do not use the 8259 PIC on x86_64, and disable it glob
 
 > Because the system boots in a PC/AT compatible mode (PIC mode or virtual wire mode), 0x01 should be written to the IMCR ([[Intel MultiProcessor Specification (1997).pdf#page=27&offset=-9,797,0|Intel MultiProcessor Specification (1997), 3.6.2.1 PIC Mode]]) (in case it exists) to disconnect the PIC from the local APIC’s LINT0 INTI (see Figure 2.4). In case the IMCR is not available, all 16 PIC interrupts should be masked.
 
-[[Interrupt Handling using the x86 APIC.pdf#page=26&selection=12,0,19,62|Interrupt Handling using the x86 APIC, page 26]]
+[[Interrupt Handling using the x86 APIC (2023).pdf#page=26&selection=12,0,19,62|Interrupt Handling using the x86 APIC, page 26]]
 
 I'm not sure if this is required if the 8259 is disabled. It's also not clear if the 8259 needs to be disabled on all cores. Doing so on secondaries doesn't appear to make a difference, and I've heard from the \#osdev Libera folks before that doing so is a 'global' thing anyway.
 

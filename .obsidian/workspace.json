@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Development Notes/x86/Vector Support.md",
+                "file": "Development Notes/Interrupts and Signals.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Vector Support"
+              "title": "Interrupts and Signals"
             }
           }
         ]
@@ -78,7 +78,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 446.50418853759766
   },
   "right": {
     "id": "73ed2a8c591a00e4",
@@ -94,7 +94,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Development Notes/x86/Vector Support.md",
+                "file": "Development Notes/Interrupts and Signals.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +104,7 @@
                 "unlinkedCollapsed": true
               },
               "icon": "links-coming-in",
-              "title": "Backlinks for Vector Support"
+              "title": "Backlinks for Interrupts and Signals"
             }
           },
           {
@@ -113,12 +113,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Development Notes/x86/Vector Support.md",
+                "file": "Development Notes/Interrupts and Signals.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
               "icon": "links-going-out",
-              "title": "Outgoing links from Vector Support"
+              "title": "Outgoing links from Interrupts and Signals"
             }
           },
           {
@@ -142,20 +142,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Development Notes/x86/Vector Support.md",
+                "file": "Development Notes/Interrupts and Signals.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Vector Support"
+              "title": "Outline of Interrupts and Signals"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 253.5
+    "width": 200
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -169,22 +169,29 @@
   },
   "active": "c3a446b40d45e3fd",
   "lastOpenFiles": [
+    "Development Notes/x86/HPET Timings.md",
+    "Development Notes/Interrupts and Signals.md",
+    "Development Notes/x86/References/Intel HPET Specification 1.0a (2004).pdf",
+    "Development Notes/x86/References/Intel MultiProcessor Specification (1997).pdf",
+    "Development Notes/x86/References/ACPI 6.5 Specification (2022).pdf",
+    "Development Notes/x86/References/Interrupt Handling using the x86 APIC (2023).pdf",
     "().md",
+    "Development Notes/x86/References/ACPI_Spec_6_5_Aug29.pdf.crdownload",
     "Development Notes/x86/Vector Support.md",
+    "Development Notes/x86/References/software-developers-hpet-spec-1-0a.pdf.crdownload",
+    "Development Notes/AArch64/STM32MP257F-DK.md",
+    "Development Notes/AArch64",
+    "Development Notes/x86/Untitled.md",
     "2025-03-11.md",
     "Untitled 2.canvas",
     "Untitled 1.canvas",
     "Untitled.canvas",
     "Development Notes/x86/Scheduler Refactor (Mar '25).md",
     "Future Ideas/Never return stack lifetime lint.md",
-    "Development Notes/x86/References/Interrupt Handling using the x86 APIC.pdf",
-    "Development Notes/x86/References/Intel MultiProcessor Specification (1997).pdf",
     "Future Ideas/Verifiable Safety Checks.md",
     "README.md",
     "Future Ideas",
     "Development Notes/x86/References",
-    "Development Notes/x86/APIC",
-    "Development Notes/x86",
-    "Development Notes"
+    "Development Notes/x86/APIC"
   ]
 }
